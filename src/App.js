@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect, useRef } from 'react';
+import useWebAnimations, {backInLeft} from '@wellyshen/use-web-animations';
 
 function App() {
+  const {ref, playState} = useWebAnimations({...backInLeft});
+  /* const {ref, playState, getAnimation} = useWebAnimations({
+    keyframes: [
+      {transform: "translate(0px)", background: "red"},
+      {transform: "translate(500px)", background: "yellow"}
+    ],
+    timing: {
+      duration: 3000,
+      iterations: 4,
+      direction: 'alternate',
+      easing: "ease-in-out"
+    },
+    onUpdate: ({playState, animate, animation}) => {
+      console.log("play State", playState)
+      console.log("animate", animate)
+      console.log("animation", animation)
+    }
+  });
+  */
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div>Animation State {playState}</div>
+      <div ref={ref} style={{backgroundColor: "red", width: "100px", height:"100px"}}>
+        Our Creator is great.
+      </div>
+      
     </div>
   );
 }
